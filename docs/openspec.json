@@ -3,10 +3,10 @@
   "info": {
     "description": "Example open api spec",
     "version": "1",
-    "title": "Cellblock Auth Token Magic Link",
+    "title": "test open api spec",
     "termsOfService": "",
     "contact": {
-      "email": "fahmi.sulaiman@ovo.id"
+      "email": "sulaimanfahmi@gmail.com"
     }
   },
   "servers": [
