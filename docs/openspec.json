@@ -227,11 +227,70 @@
         "tags": [
           "forget account"
         ],
-        "summary": "",
-        "operationId": "forgetAccount",
+        "summary": "login process",
+        "operationId": "loginUser",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/XREQUESTID"
+          },
+          {
+            "$ref": "#/components/parameters/APPID"
+          },
+          {
+            "$ref": "#/components/parameters/TIMESTAMP"
+          }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/loginRequest"
+                },
+              },
+              "example": {
+                "LOGINREQUEST_EXAMPLE": {
+                  "$ref": "#/components/examples/LOGINREQUEST_EXAMPLE"
+                }
+              }
+            }
+          }
+        },
         "responses": {
+          "200": {
+            "description": "login success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loginResponse"
+                },
+                "examples": {
+                  "loginResponse": {
+                    "$ref": "#/components/examples/LOGINRESPONSE_EXAMPLE"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "login proces fail related with authorization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/responseFailureWithAttempt"
+                },
+                "examples": {
+                  "INVALID_EMAIL_OR_PASSWORD_401": {
+                    "$ref": "#/components/examples/INVALID_EMAIL_OR_PASSWORD_401"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
         }
       }
     },
