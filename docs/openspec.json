@@ -227,6 +227,7 @@
         "tags": [
           "forget account"
         ],
+
         "summary": "login process",
         "operationId": "forgetAccount",
         "parameters": [
