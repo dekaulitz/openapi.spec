@@ -228,7 +228,7 @@
           "forget account"
         ],
         "summary": "login process",
-        "operationId": "loginUser",
+        "operationId": "forgetAccount",
         "parameters": [
           {
             "$ref": "#/components/parameters/XREQUESTID"
@@ -247,7 +247,7 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/loginRequest"
-                },
+                }
               },
               "example": {
                 "LOGINREQUEST_EXAMPLE": {
