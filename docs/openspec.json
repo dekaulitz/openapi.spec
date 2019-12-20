@@ -69,7 +69,7 @@
   ],
   "tags": [
     {
-      "name": "Login",
+      "name": "login",
       "description": "for login users",
       "externalDocs": {
         "description": "Confluennce Docs, login using magic link",
@@ -77,7 +77,7 @@
       }
     },
     {
-      "name": "register",
+      "name": "registration",
       "description": "registering new users"
     },
     {
@@ -85,7 +85,7 @@
       "description": "if some one forget their account credential"
     },
     {
-      "name": "show user"
+      "name": "user"
     }
   ],
   "paths": {
@@ -227,8 +227,7 @@
         "tags": [
           "forget account"
         ],
-
-        "summary": "login process",
+        "summary": "forget an account",
         "operationId": "forgetAccount",
         "parameters": [
           {
@@ -245,14 +244,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/loginRequest"
-                }
+                "$ref": "#/components/schemas/forgetPinRequest"
               },
-              "example": {
-                "LOGINREQUEST_EXAMPLE": {
-                  "$ref": "#/components/examples/LOGINREQUEST_EXAMPLE"
+              "examples": {
+                "FORGETACCOUNT": {
+                  "$ref": "#/components/examples/FORGETACCOUNT"
                 }
               }
             }
@@ -264,17 +260,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/loginResponse"
+                  "$ref": "#/components/schemas/user"
                 },
                 "examples": {
                   "loginResponse": {
-                    "$ref": "#/components/examples/LOGINRESPONSE_EXAMPLE"
+                    "$ref": "#/components/examples/FORGETPINACCOUNTRESPONSE"
                   }
                 }
               }
             }
           },
-          "401": {
+          "404": {
             "description": "login proces fail related with authorization",
             "content": {
               "application/json": {
@@ -283,7 +279,7 @@
                 },
                 "examples": {
                   "INVALID_EMAIL_OR_PASSWORD_401": {
-                    "$ref": "#/components/examples/INVALID_EMAIL_OR_PASSWORD_401"
+                    "$ref": "#/components/examples/DATA_NOT_FOUND_404"
                   }
                 }
               }
@@ -298,9 +294,9 @@
     "/api/v1.0/profile/{id}": {
       "get": {
         "tags": [
-          "show user"
+          "user"
         ],
-        "summary": "",
+        "summary": "listing profile",
         "operationId": "showUser",
         "parameters": [
           {
@@ -310,6 +306,9 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "$ref": "#/components/parameters/SIGNATURE"
           },
           {
             "$ref": "#/components/parameters/XREQUESTID"
@@ -322,19 +321,251 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "response when success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user"
+                },
+                "examples": {
+                  "USER": {
+                    "$ref": "#/components/examples/USER_EXAMPLE"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "login proces fail related with authorization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/responseFailureWithAttempt"
+                },
+                "examples": {
+                  "INVALID_EMAIL_OR_PASSWORD_401": {
+                    "$ref": "#/components/examples/DATA_NOT_FOUND_404"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
         }
       }
     },
     "/api/v1.0/users": {
       "get": {
         "tags": [
-          "show user"
+          "user"
         ],
-        "summary": "",
         "operationId": "showUsers",
         "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "user id",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "example": "112333"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "go to spesific page",
+            "schema": {
+              "type": "integer",
+              "default": "1"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limiting to showing data",
+            "schema": {
+              "type": "integer",
+              "default": "100"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "sorting the data",
+            "schema": {
+              "type": "string",
+              "default": "AtoZ",
+              "enum": [
+                "AtoZ",
+                "ZtoA",
+                "NewtoOld",
+                "OldtoNew"
+              ]
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "type documents",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/parameters/SIGNATURE"
+          },
+          {
+            "$ref": "#/components/parameters/APPID"
+          },
+          {
+            "$ref": "#/components/parameters/TIMESTAMP"
+          },
+          {
+            "$ref": "#/components/parameters/XREQUESTID"
+          },
+          {
+            "$ref": "#/components/parameters/CLIENTID"
+          }
         ],
         "responses": {
+          "200": {
+            "description": "response when success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/users"
+                },
+                "examples": {
+                  "USER": {
+                    "$ref": "#/components/examples/USERS_EXAMPLE"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/api/v1.0/users/{id}/{typeDocs}": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "upload the documents",
+        "externalDocs": {
+          "description": "upload user documents",
+          "url": "https://github.com/dekaulitz"
+        },
+        "operationId": "uploadDocs",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "user id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "112333"
+          },
+          {
+            "name": "typeDocs",
+            "in": "path",
+            "description": "type documents",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "KTP",
+                "SIM",
+                "PASPORT"
+              ]
+            }
+          },
+          {
+            "$ref": "#/components/parameters/SIGNATURE"
+          },
+          {
+            "$ref": "#/components/parameters/APPID"
+          },
+          {
+            "$ref": "#/components/parameters/TIMESTAMP"
+          },
+          {
+            "$ref": "#/components/parameters/XREQUESTID"
+          },
+          {
+            "$ref": "#/components/parameters/CLIENTID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["userId","file"],
+                "properties": {
+                  "userId": {
+                    "type": "string"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "response when success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/users"
+                },
+                "examples": {
+                  "USER": {
+                    "$ref": "#/components/examples/USERS_EXAMPLE"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
         }
       }
     }
@@ -423,6 +654,21 @@
             "type": "string"
           },
           "password": {
+            "type": "string"
+          }
+        }
+      },
+      "forgetPinRequest": {
+        "type": "object",
+        "required": [
+          "email",
+          "userId"
+        ],
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "userId": {
             "type": "string"
           }
         }
@@ -604,6 +850,7 @@
         "description": "current timestamp",
         "name": "timestamp",
         "in": "header",
+        "required": true,
         "schema": {
           "type": "integer"
         },
@@ -612,6 +859,7 @@
       "XREQUESTID": {
         "description": "uniqueid",
         "name": "x-request-id",
+        "required": true,
         "in": "header",
         "schema": {
           "type": "string"
@@ -621,6 +869,7 @@
       "CLIENTID": {
         "description": "client id that registering to our oauth service",
         "name": "client-id",
+        "required": true,
         "in": "header",
         "schema": {
           "type": "string"
@@ -630,6 +879,7 @@
       "SIGNATURE": {
         "description": "hmac string that we created (appid||timestamp||method||endpoint|payload)",
         "name": "signature",
+        "required": true,
         "in": "header",
         "schema": {
           "type": "string"
@@ -638,6 +888,20 @@
       }
     },
     "examples": {
+      "FORGETACCOUNT": {
+        "value": {
+          "email": "sulaimanfahmi@gmail.com",
+          "userId": "12331123"
+        }
+      },
+      "FORGETPINACCOUNTRESPONSE": {
+        "value": {
+          "firstName": "fahmi",
+          "lastName": "sulaiman",
+          "email": "sulaimanfahmi@gmail.com",
+          "password": "babiNgepet"
+        }
+      },
       "REGISTRATIONREQUEST": {
         "value": {
           "firstName": "fahmi",
@@ -659,6 +923,27 @@
           "email": "sulaimanfahmi@gmail.com",
           "password": "babiNgepet"
         }
+      },
+      "USER_EXAMPLE": {
+        "value": {
+          "firstName": "fahmi",
+          "lastName": "sulaiman",
+          "email": "sulaimanfahmi@gmail.com"
+        }
+      },
+      "USERS_EXAMPLE": {
+        "value": [
+          {
+            "firstName": "ajo",
+            "lastName": "sulaiman",
+            "email": "sulaimanfahmi@gmail.com"
+          },
+          {
+            "firstName": "fahmi",
+            "lastName": "sulaiman",
+            "email": "sulaimanfahmi@gmail.com"
+          }
+        ]
       },
       "LOGINRESPONSE_EXAMPLE": {
         "value": [
