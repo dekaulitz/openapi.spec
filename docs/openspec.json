@@ -593,7 +593,6 @@
             "description": "Confluennce Docs, login using magic link",
             "url": "https://gitlab.com"
           },
-
           "tableName":"user",
           "generateDate":true,
           "properties":{
@@ -729,6 +728,34 @@
       },
       "scopes": {
         "type": "object",
+        "x-repository": {
+          "externalDocs": {
+            "description": "Confluennce Docs, login using magic link",
+            "url": "https://gitlab.com"
+          },
+          "tableName":"scopes",
+          "generateDate":false,
+          "properties":{
+            "id":{
+              "description":"primary key for this table",
+              "type":"integer",
+              "isPrimaryKey":true,
+              "autoIncrement":true
+            },
+            "scope":{
+              "type":"string",
+              "maxLength":45
+            },
+            "description":{
+              "type":"string",
+              "maxLength":45
+            },
+            "token":{
+              "type":"string",
+              "maxLength":45
+            }
+          }
+        },
         "properties": {
           "name": {
             "type": "string"
