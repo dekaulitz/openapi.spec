@@ -573,9 +573,17 @@
   "components": {
     "schemas": {
       "users": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/user"
+        "type": "object",
+        "properties": {
+          "totalData":{
+            "type": "integer"
+          },
+          "data":{
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user"
+            }
+          }
         }
       },
       "user": {
