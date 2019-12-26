@@ -599,8 +599,8 @@
             "id":{
               "description":"primary key for this table",
               "type":"integer",
-              "isPrimaryKey":true,
-              "autoIncrement":true
+              "x-primary-key":true,
+              "x-autoincrement":true
             },
             "firstName":{
               "type":"string",
@@ -739,8 +739,8 @@
             "id":{
               "description":"primary key for this table",
               "type":"integer",
-              "isPrimaryKey":true,
-              "autoIncrement":true
+              "x-primary-key":true,
+              "x-autoincrement":true
             },
             "scope":{
               "type":"string",
