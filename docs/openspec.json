@@ -753,6 +753,9 @@
             "token":{
               "type":"string",
               "maxLength":45
+            },
+            "user": {
+              "$ref": "#/components/schemas/user"
             }
           }
         },
