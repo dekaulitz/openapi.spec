@@ -627,7 +627,8 @@
         "properties": {
           "firstName": {
             "type": "string",
-            "x-repository": "test x-repository wit"
+            "x-repository": "test x-repository wit",
+            "x-repository-coba-aja": "test x-repository wit"
           },
           "lastName": {
             "type": "string"
