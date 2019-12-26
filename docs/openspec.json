@@ -599,8 +599,8 @@
             "id":{
               "description":"primary key for this table",
               "type":"integer",
-              "x-primary-key":true,
-              "x-autoincrement":true
+              "x-repository-primary-key":true,
+              "x-repository-auto-increment":true
             },
             "firstName":{
               "type":"string",
@@ -626,9 +626,7 @@
         },
         "properties": {
           "firstName": {
-            "type": "string",
-            "x-repository": "test x-repository wit",
-            "x-repository-coba-aja": "test x-repository wit"
+            "type": "string"
           },
           "lastName": {
             "type": "string"
