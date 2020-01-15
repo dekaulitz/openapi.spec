@@ -756,6 +756,9 @@
             },
             "user": {
               "$ref": "#/components/schemas/user"
+            },
+            "berak": {
+              "$ref": "#/components/schemas/user"
             }
           }
         },
