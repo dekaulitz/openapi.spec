@@ -775,6 +775,7 @@
                   "minLength": 7
                 }
               }
+            }
           }
         },
         "properties": {
