@@ -755,7 +755,23 @@
               "maxLength":45
             },
             "user": {
-              "$ref": "#/components/schemas/user"
+              "x-composed-model": true,
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string",
+                  "minLength": 7
+                }
+              }
             }
           }
         },
