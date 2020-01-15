@@ -755,6 +755,9 @@
               "maxLength":45
             },
             "user": {
+              "$ref": "#/components/schemas/user"
+            },
+            "userData": {
               "x-composed-model": true,
               "type": "object",
               "properties": {
@@ -772,7 +775,6 @@
                   "minLength": 7
                 }
               }
-            }
           }
         },
         "properties": {
