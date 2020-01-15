@@ -758,7 +758,7 @@
               "$ref": "#/components/schemas/user"
             },
             "berak": {
-              "$ref": "#/components/schemas/user"
+              "$ref": "#/components/schemas/forgetPinRequest"
             }
           }
         },
