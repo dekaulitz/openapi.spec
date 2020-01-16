@@ -710,7 +710,7 @@
             "type": "string"
           },
           "berak": {
-            "$ref": "#/components/schemas/forgetPinRequest"
+            "$ref": "#/components/schemas/updateCredentialRequest"
           }
         }
       },
