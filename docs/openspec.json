@@ -726,6 +726,9 @@
           },
           "tokitaId": {
             "type": "string"
+          },
+          "testRecursive": {
+            "$ref": "#/components/schemas/responseFailureWithAttempt"
           }
         }
       },
