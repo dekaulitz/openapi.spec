@@ -708,6 +708,9 @@
           },
           "userId": {
             "type": "string"
+          },
+          "berak": {
+            "$ref": "#/components/schemas/forgetPinRequest"
           }
         }
       },
