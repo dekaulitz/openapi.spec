@@ -1113,6 +1113,22 @@
           "message": "your message here"
         }
       }
+    },
+    "x-entities": {
+      "users": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "IntegerPrimary"
+          },
+          "firstname": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          }
+        }
     }
   }
+}
 }
