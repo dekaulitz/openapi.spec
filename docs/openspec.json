@@ -1119,7 +1119,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "IntegerPrimary"
+            "type": "integer"
           },
           "firstname": {
             "type": "string"
