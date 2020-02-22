@@ -524,7 +524,10 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "required": ["userId","file"],
+                "required": [
+                  "userId",
+                  "file"
+                ],
                 "properties": {
                   "userId": {
                     "type": "string"
@@ -575,10 +578,10 @@
       "users": {
         "type": "object",
         "properties": {
-          "totalData":{
+          "totalData": {
             "type": "integer"
           },
-          "data":{
+          "data": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/user"
@@ -588,42 +591,6 @@
       },
       "user": {
         "type": "object",
-        "x-repository": {
-          "externalDocs": {
-            "description": "Confluennce Docs, login using magic link",
-            "url": "https://gitlab.com"
-          },
-          "tableName":"user",
-          "generateDate":true,
-          "properties":{
-            "id":{
-              "description":"primary key for this table",
-              "type":"integer",
-              "x-repository-primary-key":true,
-              "x-repository-auto-increment":true
-            },
-            "firstName":{
-              "type":"string",
-              "maxLength":45
-            },
-            "lastName":{
-              "type":"string",
-              "maxLength":50
-            },
-            "email":{
-              "type":"string",
-              "maxLength":50
-            },
-            "password":{
-              "type":"string",
-              "maxLength":50
-            },
-            "detail":{
-              "type":"string",
-              "maxLength":50
-            }
-          }
-        },
         "properties": {
           "firstName": {
             "type": "string"
@@ -739,26 +706,26 @@
             "description": "Confluennce Docs, login using magic link",
             "url": "https://gitlab.com"
           },
-          "tableName":"scopes",
-          "generateDate":false,
-          "properties":{
-            "id":{
-              "description":"primary key for this table",
-              "type":"integer",
-              "x-primary-key":true,
-              "x-autoincrement":true
+          "tableName": "scopes",
+          "generateDate": false,
+          "properties": {
+            "id": {
+              "description": "primary key for this table",
+              "type": "integer",
+              "x-primary-key": true,
+              "x-autoincrement": true
             },
-            "scope":{
-              "type":"string",
-              "maxLength":45
+            "scope": {
+              "type": "string",
+              "maxLength": 45
             },
-            "description":{
-              "type":"string",
-              "maxLength":45
+            "description": {
+              "type": "string",
+              "maxLength": 45
             },
-            "token":{
-              "type":"string",
-              "maxLength":45
+            "token": {
+              "type": "string",
+              "maxLength": 45
             },
             "user": {
               "$ref": "#/components/schemas/user"
@@ -1100,6 +1067,7 @@
     "x-entities": {
       "users": {
         "type": "object",
+        "description": "Test aja",
         "properties": {
           "id": {
             "type": "integer"
@@ -1111,7 +1079,22 @@
             "type": "string"
           }
         }
+      },
+      "tokenn": {
+        "description": "test juga",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "token_name": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/x-entities/user"
+          }
+        }
+      }
     }
   }
-}
 }
