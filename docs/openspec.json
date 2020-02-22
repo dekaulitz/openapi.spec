@@ -796,23 +796,6 @@
           },
           "message": {
             "type": "string"
-          },
-          "data": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/registrationResponse"
-              },
-              {
-                "$ref": "#/components/schemas/loginResponse"
-              },
-              {
-                "$ref": "#/components/schemas/user"
-              },
-              {
-                "$ref": "#/components/schemas/users"
-              }
-            ],
-            "default": "null"
           }
         }
       },
