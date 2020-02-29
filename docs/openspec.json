@@ -1084,11 +1084,12 @@
         "description": "test juga",
         "type": "object",
         "properties": {
-          "x-primary":{
+        "x-primary":{
             "id":{
               "type":"string"
             }
-          },
+        },
+        "properties": {
           "token_name": {
             "type": "string"
           },
