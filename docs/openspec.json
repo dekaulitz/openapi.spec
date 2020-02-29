@@ -1091,7 +1091,7 @@
             "type": "string"
           },
           "user": {
-            "$ref": "#/components/schemas/user"
+            "$ref": "#/components/x-entities/user"
           }
         }
       }
