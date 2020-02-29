@@ -1083,6 +1083,11 @@
       "tokenn": {
         "description": "test juga",
         "type": "object",
+        "x-primary":{
+          "id":{
+            "type":"string"
+          }
+        },
         "properties": {
           "token_name": {
             "type": "string"
