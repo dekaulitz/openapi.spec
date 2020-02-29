@@ -1084,8 +1084,10 @@
         "description": "test juga",
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer"
+          "x-primary":{
+            "id":{
+              "type":"string"
+            }
           },
           "token_name": {
             "type": "string"
