@@ -1079,6 +1079,14 @@
             "type":"string"
           }
         },
+        "x-repository-time":{
+          "dateUpdated":{
+            "type":"date"
+          },
+          "dateCreated":{
+            "type":"date"
+          }
+        },
         "properties": {
           "firstname": {
             "type": "string"
