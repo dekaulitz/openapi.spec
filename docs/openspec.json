@@ -1084,7 +1084,7 @@
             "type":"string"
           },
           "dateCreated":{
-            "type":"date"
+            "type":"string"
           }
         },
         "properties": {
