@@ -1081,7 +1081,7 @@
         },
         "x-repository-time":{
           "dateUpdated":{
-            "type":"date"
+            "type":"string"
           },
           "dateCreated":{
             "type":"date"
