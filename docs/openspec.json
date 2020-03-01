@@ -1097,7 +1097,7 @@
             "description":"token table"
           }
         },
-        "x-primary":{
+        "x-repository-primary":{
           "id":{
             "type":"string"
           }
