@@ -1068,7 +1068,13 @@
       "users": {
         "type": "object",
         "description": "Test aja",
-        "x-primary":{
+        "x-repository-table":{
+          "users":{
+            "type":"string",
+            "description":"client id that registering to our oauth service"
+          }
+        },
+        "x-repository-primary":{
           "id":{
             "type":"string"
           }
