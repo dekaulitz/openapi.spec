@@ -1068,10 +1068,12 @@
       "users": {
         "type": "object",
         "description": "Test aja",
+        "x-primary":{
+          "id":{
+            "type":"string"
+          }
+        },
         "properties": {
-          "id": {
-            "type": "integer"
-          },
           "firstname": {
             "type": "string"
           },
