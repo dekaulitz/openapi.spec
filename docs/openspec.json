@@ -1085,6 +1085,12 @@
       "tokenn": {
         "description": "test juga",
         "type": "object",
+        "x-repository-table":{
+          "token":{
+            "type":"string",
+            "description":"token table"
+          }
+        },
         "x-primary":{
           "id":{
             "type":"string"
