@@ -367,6 +367,7 @@
         "parameters": [
           {
             "name": "id",
+            "required":true,
             "in": "query",
             "description": "user id",
             "explode": false,
