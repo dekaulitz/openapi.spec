@@ -244,7 +244,8 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/forgetPinRequest"
+                "type":"array",
+                "items":{"$ref": "#/components/schemas/forgetPinRequest"}
               },
               "examples": {
                 "FORGETACCOUNT": {
