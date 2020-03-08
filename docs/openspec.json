@@ -150,6 +150,43 @@
           "500": {
             "$ref": "#/components/responses/500"
           }
+        },
+        "x-service":{
+          "operationId":"registrationUser",
+          "args":{
+            "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              }
+          },
+          "return":{
+            "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              }
+          }
         }
       }
     },
