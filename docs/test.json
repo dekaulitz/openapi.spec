@@ -1,0 +1,755 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "description": "Oauth Service Provider",
+    "version": "v1.0",
+    "title": "Oauth Service",
+    "termsOfService": "",
+    "contact": {
+      "email": "sulaimanfahmi@gmail.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "Token",
+      "description": "Management Token"
+    },
+    {
+      "name": "Client",
+      "description": "Management Client"
+    },
+    {
+      "name": "Scope",
+      "description": "Management Scopes"
+    }
+  ],
+  "paths": {
+    "/oauth/v1.0/init": {
+      "get": {
+        "summary": "Rendering web page for doing authorization",
+        "operationId": "OauthInit",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CLIENT-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          },
+          {
+            "$ref": "#/components/parameters/Timestamp"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInit"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oauth/v1.0/token/generate": {
+      "post": {
+        "tags": [
+          "Token"
+        ],
+        "summary": "Generate new token",
+        "operationId": "GenerateToken",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CLIENT-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Timestamp"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          },
+          {
+            "$ref": "#/components/parameters/AUTH_CODE"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestGenerateToken"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseGenerateToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oauth/v1.0/token/refresh": {
+      "get": {
+        "tags": [
+          "Token"
+        ],
+        "summary": "",
+        "operationId": "RefreshToken",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CLIENT-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Timestamp"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          },
+          {
+            "$ref": "#/components/parameters/TOKEN"
+          },
+          {
+            "$ref": "#/components/parameters/RefreshToken"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseGenerateToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oauth/v1.0/token/invalidate": {
+      "post": {
+        "tags": [
+          "Token"
+        ],
+        "summary": "",
+        "operationId": "InvalidateToken",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CLIENT-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Timestamp"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestInvalidateToken"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvalidateToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oauth/v1.0/token/validate": {
+      "get": {
+        "tags": [
+          "Token"
+        ],
+        "summary": "",
+        "operationId": "ValidateToken",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TOKEN"
+          },
+          {
+            "$ref": "#/components/parameters/CLIENT-ID"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          },
+          {
+            "$ref": "#/components/parameters/Timestamp"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseTokenValidate"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oauth/v1.0/client/paginate": {
+      "get": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "",
+        "operationId": "ClientPage",
+        "parameters": [
+        ],
+        "responses": {
+        }
+      }
+    },
+    "/oauth/v1.0/client/add": {
+      "post": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "",
+        "operationId": "AddNewClient",
+        "parameters": [
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oauth/v1.0/client/{id}": {
+      "get": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "",
+        "operationId": "ShowClientById",
+        "parameters": [
+        ],
+        "responses": {
+        }
+      }
+    },
+    "/oauth/v1.0/client/{id}/scopes": {
+      "get": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "",
+        "operationId": "GetClientScopesById",
+        "parameters": [
+        ],
+        "responses": {
+        }
+      }
+    },
+    "/oauth/v1.0/client/{id}/update": {
+      "post": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "",
+        "operationId": "UpdateClientById",
+        "parameters": [
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oauth/v1.0/client/{id}/delete": {
+      "get": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "",
+        "operationId": "DeleteClientById",
+        "parameters": [
+        ],
+        "responses": {
+        }
+      }
+    },
+    "/oauth/v1.0/scope/paginate": {
+      "get": {
+        "tags": [
+          "Scope"
+        ],
+        "summary": "",
+        "operationId": "ScopePagination",
+        "parameters": [
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oauth/v1.0/scope/add": {
+      "post": {
+        "tags": [
+          "Scope"
+        ],
+        "summary": "",
+        "operationId": "AdNewScope",
+        "parameters": [
+        ],
+        "responses": {
+        }
+      }
+    },
+    "/oauth/v1.0/scope/{id}": {
+      "get": {
+        "tags": [
+          "Scope"
+        ],
+        "summary": "",
+        "operationId": "ShowScopeById",
+        "parameters": [
+        ],
+        "responses": {
+        }
+      }
+    },
+    "/oauth/v1.0/scope/{id}/update": {
+      "post": {
+        "tags": [
+          "Scope"
+        ],
+        "summary": "",
+        "operationId": "UpdateScopeById",
+        "parameters": [
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oauth/v1.0/scope/{id}/delete": {
+      "get": {
+        "tags": [
+          "Scope"
+        ],
+        "summary": "",
+        "operationId": "DeleteScopeById",
+        "parameters": [
+        ],
+        "responses": {
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RequestGenerateToken": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "ResponseGenerateToken": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "timestamp": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "response_code": {
+                "type": "string"
+              },
+              "response_message": {
+                "type": "string"
+              },
+              "x-request-id": {
+                "type": "string"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "token": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "refresh_token": {
+                "type": "string"
+              },
+              "expired_at": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "created_at": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          }
+        }
+      },
+      "ResponseInit": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "timestamp": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "response_code": {
+                "type": "string"
+              },
+              "response_message": {
+                "type": "string"
+              },
+              "x-request-id": {
+                "type": "string"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "callback_url": {
+                "type": "string"
+              },
+              "auth_code": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "expired_at": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          }
+        }
+      },
+      "RequestInvalidateToken": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      },
+      "ResponseInvalidateToken": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "timestamp": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "response_code": {
+                "type": "string"
+              },
+              "response_message": {
+                "type": "string"
+              },
+              "x-request-id": {
+                "type": "string"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "request_by": {
+                "type": "string"
+              },
+              "created_at": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ResponseTokenValidate": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "timestamp": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "response_code": {
+                "type": "string"
+              },
+              "response_message": {
+                "type": "string"
+              },
+              "x-request-id": {
+                "type": "string"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string"
+              },
+              "is_token_active": {
+                "type": "boolean"
+              },
+              "expired_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      },
+      "RequestAddClient": {
+        "type": "object"
+      }
+    },
+    "parameters": {
+      "CLIENT-ID": {
+        "description": "client id",
+        "name": "Client-id",
+        "in": "header",
+        "required": true
+      },
+      "TOKEN": {
+        "description": "token",
+        "name": "Authorization",
+        "in": "header",
+        "required": true
+      },
+      "Scope": {
+        "description": "Scope",
+        "name": "Scope",
+        "in": "header",
+        "required": true
+      },
+      "Signature": {
+        "description": "hashing payload format URL|Method|Payload|CLientID|Random and hashing with sha256 with client secret as key",
+        "name": "Sinature",
+        "in": "header",
+        "required": true
+      },
+      "Timestamp": {
+        "description": "Current timestamp",
+        "name": "timestamp",
+        "in": "header",
+        "required": true
+      },
+      "RequestId": {
+        "description": "Request ID its come from gateway, if gateway not provide it, it will generate the new one",
+        "name": "X-Request-Id",
+        "in": "header"
+      },
+      "AUTH_CODE": {
+        "description": "This is auth code for validating the request",
+        "name": "authcode",
+        "in": "query"
+      },
+      "RefreshToken": {
+        "description": "Refresh token",
+        "name": "Refresh-Token",
+        "in": "header"
+      }
+    },
+    "x-status-code": {
+      "RESPONSE_SUCCESS": {
+        "desc": "response success no issue",
+        "value": {
+          "response_code": "FL0000",
+          "response_message": "success",
+          "http_code": 200
+        }
+      },
+      "RESPONSE_DATA_CREATED": {
+        "desc": "data created",
+        "value": {
+          "response_code": "FL0001",
+          "response_message": "created",
+          "http_code": 201
+        }
+      },
+      "RESPONSE_DATA_UPDATED": {
+        "desc": "data updated",
+        "value": {
+          "response_code": "FL0002",
+          "response_message": "updated",
+          "http_code": 200
+        }
+      },
+      "RESPONSE_DATA_DELETED": {
+        "desc": "data successful deleted",
+        "value": {
+          "response_code": "Fl0003",
+          "response_message": "deleted",
+          "http_code": 200
+        }
+      },
+      "RESPONSE_DATA_VALIDATION_ERROR": {
+        "desc": "validation error",
+        "value": {
+          "response_code": "FL0004",
+          "response_message": "%s",
+          "http_code": 200
+        }
+      },
+      "RESPONSE_DATA_NOT_FOUND": {
+        "desc": "when finding data but not found in our system",
+        "value": {
+          "response_code": "FL2000",
+          "response_message": "Data not found.",
+          "http_code": 400
+        }
+      },
+      "RESPONSE_AUTHORIZATION_CLIENTID_INVALID_ACCESS": {
+        "desc": "when client have no access in our system",
+        "value": {
+          "response_code": "FL3000",
+          "response_message": "Invalid access",
+          "http_code": 403
+        }
+      },
+      "RESPONSE_AUHTORIZATION_TOKEN_NOT_FOUND": {
+        "desc": "when user request without token",
+        "value": {
+          "response_code": "FL3001",
+          "response_message": "token not found or token is missing",
+          "http_code": 403
+        }
+      },
+      "RESPONSE_AUTHROZIATION_TOKEN_EXPIRED": {
+        "desc": "user already has token but the token expired",
+        "value": {
+          "response_code": "FL3002",
+          "response_message": "token expired please re authorize",
+          "http_code": 401
+        }
+      },
+      "RESPONSE_AUTHORIZATION_REFRESH_TOKEN_EXPIRED": {
+        "desc": "user already has token and token expired as well but when user want to refreshing token the refresh token was expired so should logout",
+        "value": {
+          "response_code": "FL3003",
+          "response_message": "refresh token expired please login",
+          "http_code": 403
+        }
+      },
+      "RESPONSE_AUTHORIZATION_INVALID_SCOPE": {
+        "desc": "user has token but wrong scope request",
+        "value": {
+          "response_code": "FL3004",
+          "response_message": "invalid scope token",
+          "http_code": 403
+        }
+      },
+      "RESPONSE_AUTHORIZATION_REFRESHING_TOKEN_FAIL": {
+        "desc": "there is some issues on doing refreshing token",
+        "value": {
+          "response_code": "FL3005",
+          "response_message": null
+        }
+      },
+      "RESPONSE_INTERNAL_SERVER_ERROR": {
+        "desc": "for internal exception error",
+        "value": {
+          "response_code": "FL5000",
+          "response_message": "%s",
+          "http_code": 500
+        }
+      }
+    }
+  }
+}
