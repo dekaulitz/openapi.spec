@@ -41,6 +41,7 @@
         ],
         "responses": {
           "200": {
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -207,201 +208,6 @@
               }
             }
           }
-        }
-      }
-    },
-    "/oauth/v1.0/client/paginate": {
-      "get": {
-        "tags": [
-          "Client"
-        ],
-        "summary": "",
-        "operationId": "ClientPage",
-        "parameters": [
-        ],
-        "responses": {
-        }
-      }
-    },
-    "/oauth/v1.0/client/add": {
-      "post": {
-        "tags": [
-          "Client"
-        ],
-        "summary": "",
-        "operationId": "AddNewClient",
-        "parameters": [
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-              }
-            }
-          }
-        }
-      }
-    },
-    "/oauth/v1.0/client/{id}": {
-      "get": {
-        "tags": [
-          "Client"
-        ],
-        "summary": "",
-        "operationId": "ShowClientById",
-        "parameters": [
-        ],
-        "responses": {
-        }
-      }
-    },
-    "/oauth/v1.0/client/{id}/scopes": {
-      "get": {
-        "tags": [
-          "Client"
-        ],
-        "summary": "",
-        "operationId": "GetClientScopesById",
-        "parameters": [
-        ],
-        "responses": {
-        }
-      }
-    },
-    "/oauth/v1.0/client/{id}/update": {
-      "post": {
-        "tags": [
-          "Client"
-        ],
-        "summary": "",
-        "operationId": "UpdateClientById",
-        "parameters": [
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-              }
-            }
-          }
-        }
-      }
-    },
-    "/oauth/v1.0/client/{id}/delete": {
-      "get": {
-        "tags": [
-          "Client"
-        ],
-        "summary": "",
-        "operationId": "DeleteClientById",
-        "parameters": [
-        ],
-        "responses": {
-        }
-      }
-    },
-    "/oauth/v1.0/scope/paginate": {
-      "get": {
-        "tags": [
-          "Scope"
-        ],
-        "summary": "",
-        "operationId": "ScopePagination",
-        "parameters": [
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-              }
-            }
-          }
-        }
-      }
-    },
-    "/oauth/v1.0/scope/add": {
-      "post": {
-        "tags": [
-          "Scope"
-        ],
-        "summary": "",
-        "operationId": "AdNewScope",
-        "parameters": [
-        ],
-        "responses": {
-        }
-      }
-    },
-    "/oauth/v1.0/scope/{id}": {
-      "get": {
-        "tags": [
-          "Scope"
-        ],
-        "summary": "",
-        "operationId": "ShowScopeById",
-        "parameters": [
-        ],
-        "responses": {
-        }
-      }
-    },
-    "/oauth/v1.0/scope/{id}/update": {
-      "post": {
-        "tags": [
-          "Scope"
-        ],
-        "summary": "",
-        "operationId": "UpdateScopeById",
-        "parameters": [
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-              }
-            }
-          }
-        }
-      }
-    },
-    "/oauth/v1.0/scope/{id}/delete": {
-      "get": {
-        "tags": [
-          "Scope"
-        ],
-        "summary": "",
-        "operationId": "DeleteScopeById",
-        "parameters": [
-        ],
-        "responses": {
         }
       }
     }
@@ -594,9 +400,6 @@
             }
           }
         }
-      },
-      "RequestAddClient": {
-        "type": "object"
       }
     },
     "parameters": {
@@ -604,46 +407,68 @@
         "description": "client id",
         "name": "Client-id",
         "in": "header",
-        "required": true
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
       },
       "TOKEN": {
         "description": "token",
         "name": "Authorization",
         "in": "header",
-        "required": true
+        "required": true, "schema": {
+          "type": "string"
+        }
       },
       "Scope": {
         "description": "Scope",
         "name": "Scope",
         "in": "header",
-        "required": true
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
       },
       "Signature": {
         "description": "hashing payload format URL|Method|Payload|CLientID|Random and hashing with sha256 with client secret as key",
         "name": "Sinature",
         "in": "header",
-        "required": true
+        "required": true, "schema": {
+          "type": "string"
+        }
       },
       "Timestamp": {
         "description": "Current timestamp",
         "name": "timestamp",
         "in": "header",
-        "required": true
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
       },
       "RequestId": {
         "description": "Request ID its come from gateway, if gateway not provide it, it will generate the new one",
         "name": "X-Request-Id",
-        "in": "header"
+        "in": "header",
+        "schema": {
+          "type": "string"
+        }
       },
       "AUTH_CODE": {
         "description": "This is auth code for validating the request",
         "name": "authcode",
-        "in": "query"
+        "in": "query",
+        "schema": {
+          "type": "string"
+        }
       },
       "RefreshToken": {
         "description": "Refresh token",
         "name": "Refresh-Token",
-        "in": "header"
+        "in": "header",
+        "schema": {
+          "type": "string"
+        }
       }
     },
     "x-status-code": {
